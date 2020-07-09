@@ -268,7 +268,7 @@ class VideoColorizer:
                 )
                 color_image.save(str(colorframes_folder / img))
                 
-                frame_count++
+                frame_count=frame_count+1
                 
                 if frame_count== print_limiter:
                    print('#Colored frames:'+print_limiter)
