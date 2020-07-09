@@ -271,7 +271,7 @@ class VideoColorizer:
                 frame_count=frame_count+1
                 
                 if frame_count== print_limiter:
-                   print('#Colored frames:'+str(print_limiter))
+                   print("#Colored frames:" + str(print_limiter))
                    print_limiter+=100                
 
     def _build_video(self, source_path: Path) -> Path:
