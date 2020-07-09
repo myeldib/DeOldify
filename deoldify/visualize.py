@@ -256,8 +256,10 @@ class VideoColorizer:
         colorframes_folder.mkdir(parents=True, exist_ok=True)
         self._purge_images(colorframes_folder)
         bwframes_folder = self.bwframes_root / (source_path.stem)
-
-        for img in progress_bar(os.listdir(str(bwframes_folder))):
+        
+        frame_count=0;
+        print_limiter=100;
+        for img in os.listdir(str(bwframes_folder)):
             img_path = bwframes_folder / img
 
             if os.path.isfile(str(img_path)):
@@ -265,6 +267,12 @@ class VideoColorizer:
                     str(img_path), render_factor=render_factor, post_process=post_process,watermarked=watermarked
                 )
                 color_image.save(str(colorframes_folder / img))
+                
+                frame_count++
+                
+                if frame_count== print_limiter:
+                   print('#Colored frames:'+print_limiter)
+                   print_limiter+=100                
 
     def _build_video(self, source_path: Path) -> Path:
         colorized_path = self.result_folder / (
