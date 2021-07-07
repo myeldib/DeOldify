@@ -325,7 +325,7 @@ class VideoColorizer:
         post_process: bool = True,
         watermarked: bool = True,
 
-    ) -> Path:
+    ) :
         source_path = self.source_folder / file_name
         self._download_video_from_url(source_url, source_path)
         return self._colorize_from_path(
@@ -334,7 +334,7 @@ class VideoColorizer:
 
     def colorize_from_file_name(
         self, file_name: str, render_factor: int = None,  watermarked: bool = True, post_process: bool = True,
-    ) -> Path:
+    ) :
         source_path = self.source_folder / file_name
         return self._colorize_from_path(
             source_path, render_factor=render_factor,  post_process=post_process,watermarked=watermarked
@@ -342,16 +342,13 @@ class VideoColorizer:
 
     def _colorize_from_path(
         self, source_path: Path, render_factor: int = None,  watermarked: bool = True, post_process: bool = True
-    ) -> Path:
-        if not source_path.exists():
-            raise Exception(
-                'Video at path specfied, ' + str(source_path) + ' could not be found.'
-            )
-        self._extract_raw_frames(source_path)
+    ) :
+
+       # self._extract_raw_frames(source_path)
         self._colorize_raw_frames(
             source_path, render_factor=render_factor,post_process=post_process,watermarked=watermarked
         )
-        return self._build_video(source_path)
+        return ""
 
 
 def get_video_colorizer(render_factor: int = 21) -> VideoColorizer:
